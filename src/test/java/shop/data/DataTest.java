@@ -2,14 +2,14 @@ package shop.data;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 // TODO:  complete the tests
-public class DataTEST extends TestCase {
-  public DataTEST(String name) {
-    super(name);
-  }
+public class DataTest {
+
+  @Test
   public void testConstructorAndAttributes() {
-	// Prof Tests from previous iteration
     String title1 = "XX";
     String director1 = "XY";
     String title2 = " XX ";
@@ -26,8 +26,8 @@ public class DataTEST extends TestCase {
     assertEquals(director1, v2.director());
   }
 
+  @Test
   public void testConstructorExceptionYear() {
-	// Prof Tests from previous iteration
     try {
       Data.newVideo("X", 1800, "Y");
       fail();
@@ -44,8 +44,8 @@ public class DataTEST extends TestCase {
     }
   }
 
+  @Test
   public void testConstructorExceptionTitle() {
-	// Prof Tests from previous iteration
     try {
       Data.newVideo(null, 2002, "Y");
       fail();
@@ -61,6 +61,7 @@ public class DataTEST extends TestCase {
     
   }
 
+  @Test
   public void testConstructorExceptionDirector() {
 	  try {
 	      Data.newVideo("X", 2002, null);

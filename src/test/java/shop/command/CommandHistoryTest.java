@@ -2,25 +2,26 @@ package shop.command;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-public class CommandHistoryTEST extends TestCase {
-  public CommandHistoryTEST(String name) {
-    super(name);
-  }
+public class CommandHistoryTest {
 
+  @Test
   public void testEmptyExceptions() {
     CommandHistoryObj h = new CommandHistoryObj();
-    Assert.assertSame(null, h.topUndoCommand());
-    Assert.assertSame(null, h.topRedoCommand());
-    Assert.assertFalse(h.getUndo().run());
-    Assert.assertFalse(h.getRedo().run());
+    assertSame(null, h.topUndoCommand());
+    assertSame(null, h.topRedoCommand());
+    assertFalse(h.getUndo().run());
+    assertFalse(h.getRedo().run());
   }
 
   private void checkStacks(CommandHistoryObj h, UndoableCommand topUndo, UndoableCommand topRedo) {
-    Assert.assertSame(topUndo, h.topUndoCommand());
-    Assert.assertSame(topRedo, h.topRedoCommand());
+    assertSame(topUndo, h.topUndoCommand());
+    assertSame(topRedo, h.topRedoCommand());
   }
 
+  @Test
   public void testThatTopIsSetByAddUndoAndRedo() {
     CommandHistoryObj h = new CommandHistoryObj();
 
@@ -67,6 +68,7 @@ public class CommandHistoryTEST extends TestCase {
   private boolean _didUndo;
   private boolean _didRedo;
 
+  @Test
   public void testThatMethodsArePerformed() {
     CommandHistoryObj h = new CommandHistoryObj();
 
@@ -74,14 +76,14 @@ public class CommandHistoryTEST extends TestCase {
       // Using "CommandHistoryTEST.this" to make references to
       // outer class instance explicit
       public boolean run() {
-        CommandHistoryTEST.this._didRun = true;
+        CommandHistoryTest.this._didRun = true;
         return true;
       }
       public void undo() {
-        CommandHistoryTEST.this._didUndo = true;
+        CommandHistoryTest.this._didUndo = true;
       }
       public void redo() {
-        CommandHistoryTEST.this._didRedo = true;
+        CommandHistoryTest.this._didRedo = true;
       }
     }
 
@@ -89,14 +91,14 @@ public class CommandHistoryTEST extends TestCase {
 
     _didRun = _didUndo = _didRedo = false;
     h.add(x);
-    Assert.assertTrue(!_didRun && !_didUndo && !_didRedo);
+    assertTrue(!_didRun && !_didUndo && !_didRedo);
 
     _didRun = _didUndo = _didRedo = false;
     h.getUndo().run();
-    Assert.assertTrue(!_didRun && _didUndo && !_didRedo);
+    assertTrue(!_didRun && _didUndo && !_didRedo);
 
     _didRun = _didUndo = _didRedo = false;
     h.getRedo().run();
-    Assert.assertTrue(!_didRun && !_didUndo && _didRedo);
+    assertTrue(!_didRun && !_didUndo && _didRedo);
   }
 }

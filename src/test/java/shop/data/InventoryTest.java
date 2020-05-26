@@ -10,13 +10,17 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 // TODO:  complete the tests
-public class InventoryTEST extends TestCase {
+public class InventoryTest {
 	InventorySet s = new InventorySet();
 	  final Video v1 = new VideoObj( "A", 2000, "B" );
 	  final Video v1copy = new VideoObj( "A", 2000, "B" );
 	  final Video v2 = new VideoObj( "B", 2000, "B" );
+
+	  @Test
 	  public void testSize() {
 		  // Prof Tests from previous iteration
 	                                 assertEquals( 0, s.size() );
@@ -28,6 +32,7 @@ public class InventoryTEST extends TestCase {
 	    try { s.addNumOwned(v1, -3); fail(); } catch ( IllegalArgumentException e ) {}
 	  }
 
+	  @Test
 	  public void testAddNumOwned() {
 		// Prof Tests from previous iteration
 	                                    assertEquals( null, s.get(v1) );
@@ -41,6 +46,7 @@ public class InventoryTEST extends TestCase {
 	    try { s.addNumOwned(null, 1);   fail(); } catch ( IllegalArgumentException e ) {}
 	  }
 
+	  @Test
 	  public void testCheckOutCheckIn() {
 		// Prof Tests from previous iteration
 	    try { s.checkOut(null);     fail(); } catch ( IllegalArgumentException e ) {}
@@ -60,6 +66,7 @@ public class InventoryTEST extends TestCase {
 	          s.checkOut(v1);       assertTrue( s.get(v1).numOut() == 1 && s.get(v1).numRentals() == 3 );
 	  }
 
+	  @Test
 	  public void testClear() {
 		// Prof Tests from previous iteration
 	          s.addNumOwned(v1, 2); assertEquals( 1, s.size() );
@@ -68,6 +75,7 @@ public class InventoryTEST extends TestCase {
 	    try { s.checkOut(v2);       fail(); } catch ( IllegalArgumentException e ) {}
 	  }
 
+	  @Test
 	  public void testGet() {
 		// Prof Tests from previous iteration
 	    s.addNumOwned(v1, 1);
@@ -77,6 +85,7 @@ public class InventoryTEST extends TestCase {
 	    assertTrue( r1 == r2 );
 	  }
 
+	  @Test
 	  public void testIterator1() {
 		// Prof Tests from previous iteration
 	    Set<Video> expected = new HashSet<Video>();
@@ -98,6 +107,8 @@ public class InventoryTEST extends TestCase {
 	    }
 	    assertTrue(expected.isEmpty());
 	  }
+
+	  @Test
 	  public void testIterator2() {
 		// Prof Tests from previous iteration
 	    List<Video> expected = new ArrayList<Video>();

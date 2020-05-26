@@ -68,9 +68,9 @@
         <configuration>
           <finalName>SE333-${user.id}-${project.artifactId}</finalName>
           <appendAssemblyId>false</appendAssemblyId>
-          <descriptorRefs>
-            <descriptorRef>src</descriptorRef>
-          </descriptorRefs>
+          <descriptors>
+            <descriptor>src/assembly/assembly.xml</descriptor>
+          </descriptors>
         </configuration>
         <executions>
           <execution>
@@ -78,6 +78,25 @@
             <phase>package</phase> <!-- bind to the packaging phase -->
             <goals>
               <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>package</phase>
+            <goals>
+              <goal>report</goal>
             </goals>
           </execution>
         </executions>

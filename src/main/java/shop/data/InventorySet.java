@@ -61,9 +61,9 @@ final class InventorySet implements Inventory {
 	  while(iter.hasNext()) {
 		  list.add(iter.next());
 	  }
-	  assert(list.containsAll(_data.values()));
+	  //assert(list.containsAll(_data.values()));
 	  list.sort(comparator);
-	  assert(list.containsAll(_data.values()));
+	  //assert(list.containsAll(_data.values()));
 	  return Collections.unmodifiableCollection(list).iterator();
   }
 
@@ -112,9 +112,9 @@ final class InventorySet implements Inventory {
 	  if (rec == null || rec.numOut() == rec.numOwned())
 		  throw new IllegalArgumentException();
 	  
-	  assert(_data.get(video) != null);
+	  //assert(_data.get(video) != null);
 	  RecordObj refRec = rec.copy();
-	  assert(refRec != rec);
+	  //assert(refRec != rec);
 	  rec.numOut++;
 	  rec.numRentals++;
 	  return refRec;
@@ -133,9 +133,9 @@ final class InventorySet implements Inventory {
 	  if (rec == null || rec.numOut() < 1)
 		  throw new IllegalArgumentException();
 	  
-	  assert(_data.get(video) != null);
+	  //assert(_data.get(video) != null);
 	  RecordObj refRec = rec.copy();
-	  assert(refRec != rec);
+	  //assert(refRec != rec);
 	  rec.numOut--; 
 	  return refRec;
   }
@@ -146,9 +146,9 @@ final class InventorySet implements Inventory {
    */
   Map clear() {
 	  HashMap<Video, Record> refMap = new HashMap<Video, Record>(_data);
-	  assert(refMap.size() == _data.size());
+	  //assert(refMap.size() == _data.size());
 	  _data.clear();
-	  assert(_data.size() == 0);
+	  //assert(_data.size() == 0);
 	  return refMap;
   }
 

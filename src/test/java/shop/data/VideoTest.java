@@ -2,14 +2,14 @@ package shop.data;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 // TODO:  complete the tests
-public class VideoTEST extends TestCase {
-  public VideoTEST(String name) {
-    super(name);
-  }
-  public void testEquals() { 
-	// Prof Tests from previous iteration
+public class VideoTest {
+
+	@Test
+  public void testEquals() {
 	  String title = "A";
 	    int year = 2009;
 	    String director = "Zebra";
@@ -25,8 +25,8 @@ public class VideoTEST extends TestCase {
 	    assertFalse( a.equals( null ) );
   }
 
-  public void testCompareTo() { 
-	// Prof Tests from previous iteration
+  @Test
+  public void testCompareTo() {
 	  String title = "A", title2 = "B";
 	    int year = 2009, year2 = 2010;
 	    String director = "Zebra", director2 = "Zzz";
@@ -54,14 +54,15 @@ public class VideoTEST extends TestCase {
 	    } catch ( NullPointerException e ) {}
   }
 
-  public void testToString() { 
-	// Prof Tests from previous iteration
+  @Test
+  public void testToString() {
 	  String s = Data.newVideo("A",2000,"B").toString();
 	    assertEquals( s, "A (2000) : B" );
 	    s = Data.newVideo(" A ",2000," B ").toString();
 	    assertEquals( s, "A (2000) : B" );
   }
 
+  @Test
   public void testHashCode() {
     assertEquals
       (-875826552,

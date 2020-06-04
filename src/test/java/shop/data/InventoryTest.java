@@ -22,7 +22,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testSize() {
-		  // Prof Tests from previous iteration
 	                                 assertEquals( 0, s.size() );
 	          s.addNumOwned(v1,  1); assertEquals( 1, s.size() );
 	          s.addNumOwned(v1,  2); assertEquals( 1, s.size() );
@@ -34,7 +33,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testAddNumOwned() {
-		// Prof Tests from previous iteration
 	                                    assertEquals( null, s.get(v1) );
 	          s.addNumOwned(v1, 1);     assertEquals( v1, s.get(v1).video() );
 	                                    assertEquals( 1, s.get(v1).numOwned());
@@ -48,7 +46,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testCheckOutCheckIn() {
-		// Prof Tests from previous iteration
 	    try { s.checkOut(null);     fail(); } catch ( IllegalArgumentException e ) {}
 	    try { s.checkIn(null);      fail(); } catch ( IllegalArgumentException e ) {}
 	          s.addNumOwned(v1, 2); assertTrue( s.get(v1).numOut() == 0 && s.get(v1).numRentals() == 0 );
@@ -68,7 +65,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testClear() {
-		// Prof Tests from previous iteration
 	          s.addNumOwned(v1, 2); assertEquals( 1, s.size() );
 	          s.addNumOwned(v2, 2); assertEquals( 2, s.size() );
 	          s.clear();            assertEquals( 0, s.size() );
@@ -77,7 +73,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testGet() {
-		// Prof Tests from previous iteration
 	    s.addNumOwned(v1, 1);
 	    Record r1 = s.get(v1);
 	    Record r2 = s.get(v1);
@@ -87,7 +82,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testIterator1() {
-		// Prof Tests from previous iteration
 	    Set<Video> expected = new HashSet<Video>();
 	    InventorySet inv = new InventorySet();
 	    Video v1 = new VideoObj("XX", 2004, "XX");
@@ -110,7 +104,6 @@ public class InventoryTest {
 
 	  @Test
 	  public void testIterator2() {
-		// Prof Tests from previous iteration
 	    List<Video> expected = new ArrayList<Video>();
 	    InventorySet inv = new InventorySet();
 	    Video v1 = new VideoObj("XX", 2004, "XX");

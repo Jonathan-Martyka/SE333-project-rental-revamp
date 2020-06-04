@@ -40,7 +40,7 @@ public class MainTest {
     @DisplayName("Start program, tester clicks \"X\" in corner, then enters \"9\", \"1\" without exception")
     void testImproperExit() {
         try {
-            JOptionPane.showMessageDialog(null, "Tester:\nClick \"X\" in corner, then enters \"9\", \"1\"",
+            JOptionPane.showMessageDialog(null, "Tester:\nOn next prompt, click \"X\" in corner, then enter \"9\", \"1\"",
                     "Tester Prompt testImproperExit",JOptionPane.INFORMATION_MESSAGE);
             Main.main(null);
             assertEquals(true, true);
@@ -53,7 +53,7 @@ public class MainTest {
     @DisplayName("Start program, tester generate bogus data, print it; Tester enters \"9\", \"1\" without exception")
     void testDisplayPhony() {
         try {
-            JOptionPane.showMessageDialog(null, "Tester:\nGenerate bogus data, print it:\n\"10\", \"4\", \"9\", \"1\"",
+            JOptionPane.showMessageDialog(null, "Tester:\nGenerate bogus data, print it:\nEnter \"10\", \"4\", \"9\", \"1\"",
                     "Tester Prompt testDisplayPhony",JOptionPane.INFORMATION_MESSAGE);
             Main.main(null);
             assertEquals(true, true);

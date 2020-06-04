@@ -1,29 +1,64 @@
 package shop.data;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 // TODO:  complete the tests
 public class VideoTest {
 
+	private static final Video A = new VideoObj("A", 2009, "Zebra");
+
+	@ParameterizedTest
+	@DisplayName("Test video equals true input")
+	@MethodSource("equalsInputTrue")
+	public void testEqualsTrue(VideoObj other) {
+		assertTrue(A.equals(other));
+	}
+
+	private static Stream<Arguments> equalsInputTrue() {
+		return Stream.of(
+				Arguments.of(A),
+				Arguments.of(new VideoObj("A", 2009, "Zebra")),
+				Arguments.of(new VideoObj(new String("A"), 2009, "Zebra")),
+				Arguments.of(new VideoObj("A", 2009, new String("Zebra")))
+		);
+	}
+
+	@ParameterizedTest
+	@DisplayName("Test video equals false input")
+	@MethodSource("equalsInputFalse")
+	public void testEqualsFalse(VideoObj other) {
+		assertFalse(A.equals(other));
+	}
+
+	private static Stream<Arguments> equalsInputFalse() {
+		return Stream.of(
+				Arguments.of(new VideoObj("A" + "1", 2009, "Zebra")),
+				Arguments.of(new VideoObj("A", 2009 + 1, "Zebra")),
+				Arguments.of(new VideoObj("A", 2009, "Zebra" + "1"))
+		);
+	}
+
 	@Test
-  public void testEquals() {
-	  String title = "A";
-	    int year = 2009;
-	    String director = "Zebra";
-	    VideoObj a = new VideoObj(title,year,director);
-	    assertTrue( a.equals(a) );
-	    assertTrue( a.equals( new VideoObj(title, year, director) ) );
-	    assertTrue( a.equals( new VideoObj(new String(title), year, director) ) );
-	    assertTrue( a.equals( new VideoObj(title, year, new String(director)) ) );
-	    assertFalse( a.equals( new VideoObj(title+"1", year, director) ) );
-	    assertFalse( a.equals( new VideoObj(title, year+1, director) ) );
-	    assertFalse( a.equals( new VideoObj(title, year, director+"1") ) );
-	    assertFalse( a.equals( new Object() ) );
-	    assertFalse( a.equals( null ) );
-  }
+	@DisplayName("Test video equals false on new Object")
+	public void testEqualsFalseNewObject() {
+		//For some reason parameterized test refuses to take just new Object, hence here
+		assertFalse(A.equals(new Object()));
+	}
+
+	@Test
+	@DisplayName("Test video equals false on null")
+	public void testEqualsFalseNull() {
+		//For some reason parameterized test refuses to take just null, hence here
+		assertFalse(A.equals(null));
+	}
 
   @Test
   public void testCompareTo() {
@@ -55,20 +90,15 @@ public class VideoTest {
   }
 
   @Test
+  @DisplayName("Test video toString outputs as intended")
   public void testToString() {
 	  String s = Data.newVideo("A",2000,"B").toString();
-	    assertEquals( s, "A (2000) : B" );
-	    s = Data.newVideo(" A ",2000," B ").toString();
-	    assertEquals( s, "A (2000) : B" );
+	  assertEquals( s, "A (2000) : B" );
   }
 
   @Test
+  @DisplayName("Test hashing provides correct hash value")
   public void testHashCode() {
-    assertEquals
-      (-875826552,
-       new VideoObj("None", 2009, "Zebra").hashCode());
-    assertEquals
-      (-1391078111,
-       new VideoObj("Blah", 1954, "Cante").hashCode());
+    assertEquals(-875826552, new VideoObj("None", 2009, "Zebra").hashCode());
   }
 }
